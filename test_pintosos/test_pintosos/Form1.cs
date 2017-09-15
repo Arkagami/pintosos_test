@@ -39,7 +39,14 @@ namespace test_pintosos
                 f.WriteLine("make");
                 f.WriteLine();
                 f.WriteLine("cd build");
-                f.Write("make clean");
+                f.WriteLine();
+                for (int i = 0; i < elem; i++)
+                {
+                    f.Write("rm -f tests/threads/");
+                    f.Write(tests[i]);
+                    f.Write(".output");
+                    f.WriteLine();
+                }
                 f.WriteLine();
                 for (int i = 0; i < elem; i++)
                 {
@@ -51,18 +58,20 @@ namespace test_pintosos
                 f.WriteLine();
                 f.Write("echo \"----------------------------------------------------------------------------\\n");
                 f.Write(tests[0]);
-                f.Write("\" >");
+                f.Write("\" > ");
                 f.Write(path);
-                f.Write("Output.txt\ncat  tests/threads/");
+                f.Write("Output.txt");
+                f.WriteLine();
+                f.Write("cat  tests/threads/");
                 f.Write(tests[0]);
-                f.Write(".result > ");
+                f.Write(".result >> ");
                 f.Write(path);
                 f.WriteLine("Output.txt");
                 for (int i = 1; i < elem; i++)
                 {
                     f.Write("echo \"----------------------------------------------------------------------------\\n");
                     f.Write(tests[i]);
-                    f.Write("\" >>");
+                    f.Write("\" >> ");
                     f.Write(path);
                     f.Write("Output.txt\ncat  tests/threads/");
                     f.Write(tests[i]);
